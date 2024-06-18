@@ -1,0 +1,30 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center h-screen">
+    <div id="app" class="flex flex-col items-center p-8 rounded-lg shadow-lg bg-gray-800">
+        <!-- Menu bar -->
+        <div id="menu" class="flex justify-around w-full mb-1 bg-gray-700 p-4 rounded-lg">
+            <button id="timerBtn" class="px-4 py-2 rounded hover:bg-gray-600">Timer</button>
+            <button id="shortBreakBtn" class="px-4 py-2 rounded hover:bg-gray-600">Short Break</button>
+            <button id="longBreakBtn" class="px-4 py-2 rounded hover:bg-gray-600">Long Break</button>
+        </div>
+        <!-- Timer display -->
+        <div id="timer" class="text-8xl mb-4 font-mono">Place</div>
+        <!-- Controls -->
+        <div id="controls" class="flex justify-center space-x-16">
+            <button id="startBtn" class="bg-green-500 hover:bg-green-600 text-white px-7 py-3 rounded font-mono font-bold text-m">Start</button>
+            <button id="resetBtn" class="bg-red-500 hover:bg-red-600 text-white px-7 py-3 rounded font-mono font-bold text-m">Reset</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
