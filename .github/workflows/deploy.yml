@@ -1,0 +1,46 @@
+# .github/workflows/deploy.yml
+name: Deploy to Main Site
+
+on:
+  push:
+    branches:
+      - main  # Adjust this if you use a different branch for your main development
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Build Project
+      run: |
+        # Add your build commands here
+        # For example, if you use npm for building
+        npm install
+        npm run build
+
+    - name: Deploy to Main Repo
+      run: |
+        # Copy the build output to a separate directory
+        mkdir -p ../deploy/pomodoro
+        cp -r dist/* ../deploy/pomodoro/  # Adjust 'dist' to your build output directory
+
+        # Change directory to the deployment repo
+        cd ../deploy
+
+        # Initialize git and add the main repo as remote
+        git init
+        git remote add origin https://github.com/yourusername/wirthless.dev.git
+        git fetch
+        git checkout -B gh-pages origin/gh-pages
+
+        # Copy the project to the appropriate subdirectory
+        rsync -a --delete pomodoro/ wirthless.dev/projects/pomodoro/
+
+        # Commit and push changes
+        git add wirthless.dev/projects/pomodoro/
+        git commit -m "Deploy pomodoro-timer from $GITHUB_REPOSITORY"
+        git push origin gh-pages
+
